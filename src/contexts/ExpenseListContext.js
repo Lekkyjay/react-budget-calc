@@ -3,8 +3,6 @@ import { v4 as uuidv4 } from 'uuid'
 
 export const ExpenseListContext = createContext()
 
-
-
 const ExpenseListContextProvider = ({ children }) => {
   const initialState = JSON.parse(localStorage.getItem('expenses')) || []
   const [expenses, setExpenses] = useState(initialState)
