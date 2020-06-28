@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useState, useEffect } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 
 export const ExpenseListContext = createContext()
@@ -6,13 +6,12 @@ export const ExpenseListContext = createContext()
 
 
 const ExpenseListContextProvider = ({ children }) => {
-  const initialExpenses = [
-    { id: uuidv4(), title: "rent", amount: 1600 },
-    { id: uuidv4(), title: "car payment", amount: 400 },
-    { id: uuidv4(), title: "credit card bill", amount: 1200 }
-  ]
+  const initialState = JSON.parse(localStorage.getItem('expenses')) || []
+  const [expenses, setExpenses] = useState(initialState)
 
-  const [expenses, setExpenses] = useState(initialExpenses)
+  useEffect(() => {
+    localStorage.setItem('expenses', JSON.stringify(expenses))
+  }, [expenses])
 
   const [editItem, setEditItem] = useState(null)
 
