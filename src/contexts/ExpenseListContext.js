@@ -30,7 +30,7 @@ const ExpenseListContextProvider = ({ children }) => {
   }
 
   const handleDelete = (id) => {
-    setExpenses(expenses.filter((expense) => expense.id != id))
+    setExpenses(expenses.filter((expense) => expense.id !== id))
   }
 
   const removeAll = () => {
